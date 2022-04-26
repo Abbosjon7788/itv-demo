@@ -86,8 +86,7 @@
                     ],
                     "attrs": [
                          {
-                              "fill": "rgb(46, 52, 86)",
-                              "opacity": 0.3
+                              "fill": "rgb(255, 255, 255)"
                          }
                     ],
                     "isMulticolor": false,
@@ -126,11 +125,7 @@
                          "M0 128v768h1024v-768h-1024zM192 832h-128v-128h128v128zM192 576h-128v-128h128v128zM192 320h-128v-128h128v128zM768 832h-512v-640h512v640zM960 832h-128v-128h128v128zM960 576h-128v-128h128v128zM960 320h-128v-128h128v128zM384 320v384l256-192z"
                     ],
                     "tags": [
-                         "film",
-                         "video",
-                         "movie",
-                         "tape",
-                         "play"
+                         "film"
                     ],
                     "defaultCode": 59667,
                     "grid": 16,

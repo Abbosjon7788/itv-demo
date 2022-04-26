@@ -2,6 +2,7 @@
      .pagination-wrapper {
           display: flex;
           justify-content: center;
+          margin-top: 32px;
           .custom-pagination {
                display: flex;
                align-items: center;
@@ -19,15 +20,15 @@
                     transition: all 0.3s;
                     color: white;
                     &:hover {
-                         border-color: white;
+                         border-color: #fff;
                     }
                     &:last-child {
                          margin-right: 0;
                     }
                     &.active {
-                         background-color: white;
-                         border-color: white;
-                         color: #373737;
+                         background-color: #e41a4b;
+                         border-color: #e41a4b;
+                         color: #fff;
                     }
                     a {
                          display: flex;

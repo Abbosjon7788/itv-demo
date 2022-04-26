@@ -8,7 +8,7 @@ export default function Home({ movies }) {
   console.log('movies', movies)
   console.log('router', router.query.page)
   return (
-    <div className="home">
+    <div className="home container">
 
       <div className="pagination-wrapper">
         <ReactPaginate
