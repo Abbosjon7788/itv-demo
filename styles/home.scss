@@ -1,4 +1,17 @@
 .home {
+     padding: 24px 0;
+     .title {
+          margin-bottom: 32px;
+          margin-top: 8px;
+          font-size: 24px;
+          letter-spacing: 0.5px;
+          line-height: 32px;
+     }
+     .movies-wrapper {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 20px;
+     }
      .pagination-wrapper {
           display: flex;
           justify-content: center;
@@ -13,8 +26,8 @@
                     height: 32px;
                     padding: 0 4px;
                     margin-right: 8px;
-                    background-color: #373737;
-                    border: 1px solid #373737;
+                    background-color: #1c1c1c;
+                    border: 1px solid #1c1c1c;
                     border-radius: 4px;
                     cursor: pointer;
                     transition: all 0.3s;

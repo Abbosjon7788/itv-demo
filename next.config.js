@@ -7,6 +7,12 @@ module.exports = {
     TOKEN: process.env.TOKEN
   },
 
+  images: {
+    domains: [process.env.IMAGE_DOMAIN],
+    path: '/_next/image',
+    loader: 'default'
+  },
+
   webpack: config => {
     config.resolve.alias['components'] = path.join(__dirname, 'components')
     config.resolve.alias['public'] = path.join(__dirname, 'public')
