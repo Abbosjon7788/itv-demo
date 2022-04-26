@@ -7,14 +7,9 @@ export default function Home({ movies }) {
   console.log('movies', movies)
   console.log('router', router.query.page)
   return (
-    <div>
-      home page
-      <div>
-        <Link href={`/?page=2`}>
-          <a>click here</a>
-        </Link>
-      </div>
-      <div>
+    <div className="home">
+
+      <div className="pagination-wrapper">
         <ReactPaginate
           pageCount={100}
           pageRangeDisplayed={3}
