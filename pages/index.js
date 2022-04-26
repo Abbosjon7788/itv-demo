@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ReactPaginate from 'react-paginate'
+import Icon from '../static/Icons'
 
 export default function Home({ movies }) {
   const router = useRouter()
@@ -11,6 +12,8 @@ export default function Home({ movies }) {
 
       <div className="pagination-wrapper">
         <ReactPaginate
+          previousLabel={<Icon icon="chevron-left" width={20} height={20} />}
+          nextLabel={<Icon icon="chevron-right" width={20} height={20} />}
           pageCount={100}
           pageRangeDisplayed={3}
           marginPagesDisplayed={3}
