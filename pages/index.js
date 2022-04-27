@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ReactPaginate from 'react-paginate'
-import Icon from 'public/Icons'
+import Icon from 'public/assets/Icons'
 import MovieItem from 'components/MovieItem'
 
 // const scrollToTop = (ref) => window.scrollTo(0, ref.current.offsetTop)

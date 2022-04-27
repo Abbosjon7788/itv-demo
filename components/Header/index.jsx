@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import Link from 'next/link'
-import Icon from 'public/Icons'
+import Icon from 'public/assets/Icons'
 
 const Header = () => {
 

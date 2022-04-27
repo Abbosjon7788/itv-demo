@@ -1,21 +1,34 @@
+import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import MovieItem from 'components/MovieItem'
+import Player from 'components/Player'
 
 const MovieInfo = ({ data, error }) => {
      console.log('data', data)
      console.log('error', error)
+     const scrollRef = useRef()
+     const [hasWindow, setHasWindow] = useState(false)
 
      if (data?.code === undefined || data?.code === 404) {
           return <p className="data-not-found">Movie not found</p>
      }
-
      const { movie } = data?.data
+
+     useEffect(() => {
+          if (typeof window !== 'undefined') {
+               setHasWindow(true)
+          }
+     }, [])
+
+     const playMovie = () => {
+          scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+     }
 
      return (
           <div className="movie-info">
                <div className="movie-poster">
                     <div className="movie-img">
-                         <Image src={movie?.files.poster_url} layout="fill" priority />
+                         <Image src={movie?.files.poster_url} layout="fill" priority alt='' />
                     </div>
                     <div className="movie-desc-wrapper">
                          <div className="left">
@@ -31,7 +44,7 @@ const MovieInfo = ({ data, error }) => {
                                         <span className="rating-grade">{movie?.rates.imdb || '0.0'}</span>
                                    </div>
                               </div>
-                              <button className="play-btn">Смотреть</button>
+                              <button onClick={playMovie} className="play-btn">Смотреть</button>
                          </div>
                          <div className="right">
                               {movie?.countries_str && <div className="category">
@@ -52,6 +65,9 @@ const MovieInfo = ({ data, error }) => {
                               </div>}
                          </div>
                     </div>
+               </div>
+               <div ref={scrollRef} className="movie-player">
+                    {hasWindow && <Player videoUrl={'/assets/videos/nature-video.mp4'} />}
                </div>
                {movie?.movies?.length > 0 && <>
                     <h5 className="title">Похожие</h5>
