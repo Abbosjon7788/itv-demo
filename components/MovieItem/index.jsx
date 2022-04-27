@@ -1,19 +1,20 @@
 import { memo } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const MovieItem = ({ data }) => {
-     console.log('data', data)
+     const router = useRouter()
      return (
-          <div className="movie-item">
+          <div onClick={() => router.push(`/movie/${data.id}`)} className="movie-item">
                <div className="movie-img">
                     <Image src={data?.files.poster_url} layout={'fill'} priority />
+                    <div className="addition-info">
+                         {data.rates?.imdb && <p className="imdb">IMDb {data.rates?.imdb}</p>}
+                         <p className="country">{data?.year},{data.countries[0]?.title}</p>
+                    </div>
                </div>
                <p className="movie-name">{data?.title}</p>
-               {/* <div className="movie-info">
-                    <p className="movie-name">{data?.title}</p>
-                    {data.rates?.imdb && <p className="imdb">IMDb {data.rates?.imdb}</p>}
-                    <p className="country">{data?.year},{data.countries[0]?.title}</p>
-               </div> */}
+
           </div>
      )
 }
