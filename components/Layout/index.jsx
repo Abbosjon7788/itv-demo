@@ -1,14 +1,11 @@
-import { useRef } from 'react'
+import { memo } from 'react'
 import Header from 'components/Header'
 
 const Layout = ({ children }) => {
-
-     const scrollRef = useRef()
-
      return (
           <div className="layout">
                <Header />
-               <div className="page" ref={scrollRef}>
+               <div className="page">
                     <div className="container">
                          {children}
                     </div>
@@ -17,4 +14,4 @@ const Layout = ({ children }) => {
      )
 }
 
-export default Layout
+export default memo(Layout)
