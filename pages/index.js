@@ -13,9 +13,9 @@ export default function Home({ data }) {
   }
 
 
-  // if (!data?.movies) {
-  //   return <p>Loading...</p>
-  // }
+  if (!data?.movies) {
+    return <p className="data-not-found">Movies not found</p>
+  }
 
   return (
     <div className="home">
