@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ReactPaginate from 'react-paginate'
 import Icon from 'public/assets/Icons'
@@ -6,7 +5,6 @@ import MovieItem from 'components/MovieItem'
 
 export default function Home({ data }) {
   const router = useRouter()
-  const scrollRef = useRef(null)
 
   const handleChanges = ({ selected }) => {
     router.push({
@@ -15,9 +13,9 @@ export default function Home({ data }) {
   }
 
 
-  if (!data?.movies) {
-    return <p>Loading...</p>
-  }
+  // if (!data?.movies) {
+  //   return <p>Loading...</p>
+  // }
 
   return (
     <div className="home">
