@@ -67,7 +67,7 @@ const MovieInfo = ({ data, error }) => {
                     </div>
                </div>
                <div ref={scrollRef} className="movie-player">
-                    {hasWindow && <Player videoUrl={'/assets/videos/nature-video-2.mp4'} />}
+                    {hasWindow && <Player videoUrl={'/assets/videos/mov_bbb.mp4'} />}
                </div>
                {movie?.movies?.length > 0 && <>
                     <h5 className="title">Похожие</h5>
