@@ -9,16 +9,16 @@ const MovieInfo = ({ data, error }) => {
      const scrollRef = useRef()
      const [hasWindow, setHasWindow] = useState(false)
 
-     if (data?.code === undefined || data?.code === 404) {
-          return <p className="data-not-found">Movie not found</p>
-     }
-     const { movie } = data?.data
-
      useEffect(() => {
           if (typeof window !== 'undefined') {
                setHasWindow(true)
           }
      }, [])
+
+     if (data?.code === undefined || data?.code === 404) {
+          return <p className="data-not-found">Movie not found</p>
+     }
+     const { movie } = data?.data
 
      const playMovie = () => {
           scrollRef.current.scrollIntoView({ behavior: 'smooth' })
