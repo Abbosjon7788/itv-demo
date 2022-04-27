@@ -34,20 +34,10 @@ li {
   padding: 0 24px;
   margin: 0 auto;
 }
-.page {
-  height: calc(100vh - 80px);
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    border-radius: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #1c1c1c;
-    border-radius: 8px;
-  }
+.layout {
+  padding-top: 80px;
 }
+
 .data-not-found {
   font-size: 18px;
   line-height: 24px;
