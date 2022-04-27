@@ -1,13 +1,9 @@
 const MovieInfo = () => {
      return (
-          <div className="page">
-               <div className="container">
-                    <div className="movie-info">
-                         hello
-                    </div>
-               </div>
+          <div className="movie-info">
+               hello
           </div>
      )
 }
 
-export default MovieInfo
+export default MovieInfo;

@@ -14,15 +14,15 @@ module.exports = {
     loader: 'default'
   },
 
-  async redirects() {
-    return [
-      {
-        source: '/movie',
-        destination: '/',
-        permanent: true,
-      },
-    ]
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/movie',
+  //       destination: '/',
+  //       permanent: true,
+  //     },
+  //   ]
+  // },
 
   webpack: config => {
     config.resolve.alias['components'] = path.join(__dirname, 'components')
