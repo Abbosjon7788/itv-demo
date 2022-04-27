@@ -3,6 +3,8 @@ import Image from 'next/image'
 import MovieItem from 'components/MovieItem'
 import Player from 'components/Player'
 
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
+
 const MovieInfo = ({ data }) => {
      const scrollRef = useRef()
 
@@ -21,7 +23,15 @@ const MovieInfo = ({ data }) => {
      const { movie } = data?.data
 
      const playMovie = () => {
-          scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+          // scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+          // () => window.scrollTo(0, scrollRef.current.offsetTop)
+          // scrollToRef(scrollRef)
+          window.scrollTo({
+               top: 0,
+               behavior: 'smooth'
+               /* you can also use 'auto' behaviour
+                  in place of 'smooth' */
+          });
           setTimeout(() => { setPlay(true) }, 100)
      }
 
