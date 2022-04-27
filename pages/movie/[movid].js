@@ -1,34 +1,97 @@
-const MovieInfo = ({ data }) => {
-     console.log('data', data?.movie)
+import Image from 'next/image'
+import MovieItem from 'components/MovieItem'
+
+const MovieInfo = ({ data, error }) => {
+     console.log('data', data)
+     console.log('error', error)
+
+     if (data?.code === undefined || data?.code === 404) {
+          return <p className="data-not-found">Movie not found</p>
+     }
+
+     const { movie } = data?.data
+
      return (
           <div className="movie-info">
-               hello
+               <div className="movie-poster">
+                    <div className="movie-img">
+                         <Image src={movie?.files.poster_url} layout="fill" priority />
+                    </div>
+                    <div className="movie-desc-wrapper">
+                         <div className="left">
+                              <h5 className="movie-name">{movie?.title}</h5>
+                              <p className="movie-desc">{movie?.description}</p>
+                              <div className="ratings">
+                                   <div className="rating">
+                                        Рейтинг кинопоиска
+                                        <span className="rating-grade">{movie?.rates.kinopoisk || '0.0'}</span>
+                                   </div>
+                                   <div className="rating">
+                                        Рейтинг IMDb
+                                        <span className="rating-grade">{movie?.rates.imdb || '0.0'}</span>
+                                   </div>
+                              </div>
+                              <button className="play-btn">Смотреть</button>
+                         </div>
+                         <div className="right">
+                              {movie?.countries_str && <div className="category">
+                                   <b className="category-name">Страна:</b>
+                                   <span>{movie?.countries_str}</span>
+                              </div>}
+                              {movie?.year && <div className="category">
+                                   <b className="category-name">Год:</b>
+                                   <span>{movie?.year}</span>
+                              </div>}
+                              {movie?.genres_str && <div className="category">
+                                   <b className="category-name">Жанр:</b>
+                                   <span>{movie?.genres_str}</span>
+                              </div>}
+                              {movie?.label && <div className="category">
+                                   <b className="category-name">Провайдер:</b>
+                                   <span>{movie?.label}</span>
+                              </div>}
+                         </div>
+                    </div>
+               </div>
+               {movie?.movies?.length > 0 && <>
+                    <h5 className="title">Похожие</h5>
+                    <div className="similar-movies">
+                         {
+                              movie?.movies.map(item => (
+                                   <MovieItem key={item.id} data={item} />
+                              ))
+                         }
+                    </div>
+               </>}
           </div>
      )
 }
 
 export default MovieInfo;
 
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
      const { API_URL, TOKEN } = process.env
-     const res = await fetch(`${API_URL}/content/main/2/show/${params.movid}?user=${TOKEN}`)
-     const { data } = await res.json()
-     return {
-          props: { data }
-     }
-}
+     let data = [];
+     let error = ""
 
-export const getStaticPaths = async () => {
-     const { API_URL, TOKEN } = process.env
-     const res = await fetch(`${API_URL}/content/main/2/list?user=${TOKEN}`)
-     const { data } = await res.json()
-     const paths = data?.movies.map(item => {
-          return {
-               params: { movid: `${item.id}` }
-          }
-     })
-     return {
-          paths,
-          fallback: false
+     try {
+          const response = await fetch(`${API_URL}/content/main/2/show/${params.movid}?user=${TOKEN}`)
+          if (response.status !== 200)
+               throw String(`Invalid server response: ${response.status} ${response.statusText}`);
+
+          data = await response.json();
+
+          if (Object.keys(data).length === 0 && data.constructor === Object) throw String("No data was found!");
+
+          data = JSON.parse(JSON.stringify(data));
+     } catch (e) {
+          error = 'Movie not found';
      }
+
+     return {
+          props: {
+               data,
+               error,
+          },
+     };
 }

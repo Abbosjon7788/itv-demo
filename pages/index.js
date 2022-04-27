@@ -33,7 +33,7 @@ export default function Home({ data }) {
             data?.movies.map(item => (
               <MovieItem key={item.id} data={item} />
             )) :
-            <p>Movies not found</p>
+            <p className="data-not-found">Movies not found</p>
         }
       </div>
       <div className="pagination-wrapper">

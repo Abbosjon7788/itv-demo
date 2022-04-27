@@ -1,6 +1,7 @@
 @import "../components/Header/header";
 @import "../components/MovieItem/movie-item";
 @import "./home";
+@import "../pages/movie/movie-info";
 
 html,
 body {
@@ -45,4 +46,16 @@ li {
     background: #1c1c1c;
     border-radius: 8px;
   }
+}
+.data-not-found {
+  font-size: 18px;
+  line-height: 24px;
+  padding-top: 24px;
+}
+.title {
+  margin-bottom: 32px;
+  margin-top: 8px;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  line-height: 32px;
 }
