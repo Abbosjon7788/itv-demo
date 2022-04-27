@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import MovieItem from 'components/MovieItem'
 import Player from 'components/Player'
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
-
 const MovieInfo = ({ data }) => {
      const scrollRef = useRef()
+     const router = useRouter()
 
      const [hasWindow, setHasWindow] = useState(false)
      const [play, setPlay] = useState(false)
@@ -17,6 +17,14 @@ const MovieInfo = ({ data }) => {
           }
      }, [])
 
+     useEffect(() => {
+          router.events.on('routeChangeStart', () => setPlay(false))
+
+          return () => {
+               router.events.off('routeChangeStart', () => setPlay(false))
+          }
+     }, [router.asPath])
+
      if (data?.code === undefined || data?.code === 404) {
           return <p className="data-not-found">Movie not found</p>
      }
@@ -24,12 +32,6 @@ const MovieInfo = ({ data }) => {
 
      const playMovie = () => {
           scrollRef.current.scrollIntoView({ behavior: 'smooth' })
-          // () => window.scrollTo(0, scrollRef.current.offsetTop)
-          // scrollToRef(scrollRef)
-          // window.scroll({
-          //      top: scrollRef.current.offsetTop,
-          //      behavior: 'smooth'
-          // });
           setTimeout(() => { setPlay(true) }, 100)
      }
 
@@ -76,7 +78,7 @@ const MovieInfo = ({ data }) => {
                     </div>
                </div>
                <div ref={scrollRef} className="movie-player">
-                    {hasWindow && <Player videoUrl={'/assets/videos/mov_bbb.mp4'} playing={play} setPlaying={setPlay} />}
+                    {hasWindow && <Player key={router.asPath} videoUrl={'/assets/videos/mov_bbb.mp4'} playing={play} setPlaying={setPlay} />}
                </div>
                {movie?.movies?.length > 0 && <>
                     <h5 className="title">Похожие</h5>
