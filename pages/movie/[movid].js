@@ -3,11 +3,11 @@ import Image from 'next/image'
 import MovieItem from 'components/MovieItem'
 import Player from 'components/Player'
 
-const MovieInfo = ({ data, error }) => {
-     console.log('data', data)
-     console.log('error', error)
+const MovieInfo = ({ data }) => {
      const scrollRef = useRef()
+
      const [hasWindow, setHasWindow] = useState(false)
+     const [play, setPlay] = useState(false)
 
      useEffect(() => {
           if (typeof window !== 'undefined') {
@@ -22,6 +22,7 @@ const MovieInfo = ({ data, error }) => {
 
      const playMovie = () => {
           scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+          setTimeout(() => { setPlay(true) }, 100)
      }
 
      return (
@@ -67,7 +68,7 @@ const MovieInfo = ({ data, error }) => {
                     </div>
                </div>
                <div ref={scrollRef} className="movie-player">
-                    {hasWindow && <Player videoUrl={'/assets/videos/mov_bbb.mp4'} />}
+                    {hasWindow && <Player videoUrl={'/assets/videos/mov_bbb.mp4'} playing={play} setPlaying={setPlay} />}
                </div>
                {movie?.movies?.length > 0 && <>
                     <h5 className="title">Похожие</h5>

@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import ReactPlayer from 'react-player'
 
-const Player = ({ videoUrl }) => {
+const Player = ({ videoUrl, playing, setPlaying }) => {
      return (
           <div className="video-player">
                <ReactPlayer
@@ -9,6 +9,8 @@ const Player = ({ videoUrl }) => {
                     controls
                     width="100%"
                     height="auto"
+                    playing={playing}
+                    onEnded={() => setPlaying(false)}
                     className="react-player"
                />
           </div>
