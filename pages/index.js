@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ReactPaginate from 'react-paginate'
 import Icon from 'public/Icons'
