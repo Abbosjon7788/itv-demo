@@ -4,8 +4,6 @@ import ReactPaginate from 'react-paginate'
 import Icon from 'public/assets/Icons'
 import MovieItem from 'components/MovieItem'
 
-// const scrollToTop = (ref) => window.scrollTo(0, ref.current.offsetTop)
-
 export default function Home({ data }) {
   const router = useRouter()
   const scrollRef = useRef(null)
@@ -14,9 +12,6 @@ export default function Home({ data }) {
     router.push({
       query: { page: selected + 1 }
     })
-    // scrollRef.current.scrollIntoView()
-    // scrollToTop(scrollRef)
-    // console.log(scrollRef.current.offsetTop)
   }
 
 
