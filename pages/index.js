@@ -12,18 +12,20 @@ export default function Home({ data }) {
     })
   }
 
-
   if (!data?.movies) {
     return <p className="data-not-found">Movies not found</p>
   }
+
+  const { movies } = data
+  const pageCount = Math.ceil(data?.total_items / 18)
 
   return (
     <div className="home">
       <h5 className="title">Фильмы</h5>
       <div className="movies-wrapper">
         {
-          data?.movies?.length > 0 ?
-            data?.movies.map(item => (
+          movies?.length > 0 ?
+            movies.map(item => (
               <MovieItem key={item.id} data={item} />
             )) :
             <p className="data-not-found">Movies not found</p>
@@ -33,7 +35,7 @@ export default function Home({ data }) {
         <ReactPaginate
           previousLabel={<Icon icon="chevron-left" width={20} height={20} />}
           nextLabel={<Icon icon="chevron-right" width={20} height={20} />}
-          pageCount={data?.total_items}
+          pageCount={pageCount}
           pageRangeDisplayed={3}
           marginPagesDisplayed={3}
           containerClassName={'custom-pagination'}
